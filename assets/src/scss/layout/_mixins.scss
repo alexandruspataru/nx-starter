@@ -1,0 +1,50 @@
+// Box Shadow -- Prefixes no longer needed
+// @mixin box-shadow($x, $y, $blur, $color) {
+//     box-shadow: $x $y $blur $color;
+// }
+
+// @mixin inset-box-shadow($x, $y, $blur, $color) {
+//     box-shadow: inset $x $y $blur $color;
+// }
+
+// Borders -- Prefixes no longer needed
+// @mixin border-radius($top-left, $top-right, $bottom-right, $bottom-left) {
+//     border-radius: $top-left $top-right $bottom-right $bottom-left;
+// }
+
+// Backgrounds -- Prefixes no longer needed
+// @mixin background-size($type) {
+//     background-size: ($type);
+// }x
+
+// Transitions -- Prefixes no longer needed
+// @mixin transition($name, $duration, $function) {
+//     transition: $name $duration $function;
+// }
+
+@mixin transition($duration) {
+    -webkit-transition: all $duration ease;
+    -moz-transition:  all $duration ease;
+    -ms-transition:  all $duration ease;
+    -o-transition:  all $duration ease;
+    transition:  all $duration ease;
+}
+
+@mixin scale($level) {
+    -moz-transform: scale($level);
+    -webkit-transform: scale($level);
+    transform: scale($level);
+}
+
+@mixin border-radius($radius) {
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+    border-radius: $radius;
+}
+
+@mixin clear-after{
+    content: '';
+	display: table;
+	clear: both;
+	width: 100%;
+}

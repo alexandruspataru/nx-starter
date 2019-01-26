@@ -1,0 +1,27 @@
+/* Go to top */
+#back-to-top {
+    position: fixed;
+    bottom: 100px; // Cookie consent problem if lower than 100px
+    right: 40px;
+    z-index: 9999;
+    width: 32px;
+    height: 32px;
+    text-align: center;
+    line-height: 30px;
+	background: rgba(0,0,0,.5);
+	color: #fff;
+    cursor: pointer;
+    border: 0;
+    border-radius: 2px;
+    text-decoration: none;
+    transition: opacity 0.2s ease-out;
+    opacity: 0;
+}
+
+#back-to-top:hover {
+    background: rgba(0,0,0,.7);
+}
+
+#back-to-top.show {
+    opacity: 1;
+}

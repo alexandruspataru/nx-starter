@@ -1,0 +1,21 @@
+// Variables and Mixins
+@import 'layout/variables';
+@import 'layout/mixins';
+
+
+// Vendor
+@import 'plugins/bootstrap';
+@import 'plugins/font-awesome';
+
+// Project files
+@import 'layout/header';
+@import 'layout/footer';
+@import 'layout/wordpress';
+@import 'layout/general';
+
+// Pages
+@import 'pages/home';
+@import 'pages/404';
+
+// Responsive
+@import 'layout/responsive'; 

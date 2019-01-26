@@ -1,0 +1,24 @@
+{
+  "name": "wordpress-starter",
+  "version": "2.2.0",
+  "homepage": "http://alexspataru.com",
+  "authors": [
+    "alexspataru"
+  ],
+  "description": "WordPress Start Theme",
+  "main": "index.php",
+  "moduleType": [
+    "node"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "inc"
+  ],
+  "dependencies": {
+    
+  }
+}

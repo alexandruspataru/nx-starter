@@ -1,0 +1,25 @@
+/*
+Theme Name: Starter Theme
+Author: Alex Spataru
+Author URI: https://alexspataru.com
+Description: Starter theme by <code>Alex Spataru</code>
+Version: 0.1
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: nexus
+GitHub Theme URI: alexandruspataru/nx-starter
+GitHub Theme URI: https://github.com/alexandruspataru/nx-starter
+*/
+
+/* General Settings */
+.navbar-brand{
+	padding: 0;
+	margin-left:0 !important;
+}
+
+.navbar-brand img{
+	width:100%;
+	height:auto;
+	max-width:250px;
+	max-height:50px;
+}

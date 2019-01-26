@@ -1,0 +1,369 @@
+[
+    {
+        "key": "group_56d8215c55042",
+        "title": "Page Settings",
+        "fields": [
+            {
+                "key": "field_56d8216fdd4fc",
+                "label": "Google SEO & Facebook",
+                "name": "google_seo_&_facebook",
+                "type": "tab",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "placement": "left",
+                "endpoint": 0
+            },
+            {
+                "key": "field_56d82254dd4fd",
+                "label": "Meta descriere",
+                "name": "meta_descriere",
+                "type": "text",
+                "instructions": "Meta descrierea este textul care apare in momentul in care website-ul \/ pagina este gasita in momentul cautarii (pe motorul de cautare). Aici avem 2 reguli foarte importante:\r\n\r\n<ol>\r\n<li>Descrierea ar trebui sa fie usor de citit si sa nu fie gen tradusa fortat<\/li>\r\n<li>Ar trebui sa aibe maxim 160 de caractere <\/li>\r\n<\/ol>",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": 160,
+                "readonly": 0,
+                "disabled": 0
+            },
+            {
+                "key": "field_56d823eadefff",
+                "label": "Meta keywords",
+                "name": "meta_keywords",
+                "type": "text",
+                "instructions": "<strong>Google<\/strong> nu se foloseste in momentul de fata de keywords deoarece, candva, unii utilizatori le-au folosit in mod abuziv, punand foarte multe keyword-uri, in speranta ca vor fi indexati foarte bine, drept urmare, Google a decis sa renunte la keywords. Putem sa ii punem, dar nu ar trebui sa ne asteptam la miracole. <br>\r\nKeyword-urile trebuiesc separate prin virgula in genul:  <br>\r\n<code>keyword1, keyword 2, keyword din mai multe cuvinte, keyword 4<\/code>",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": "",
+                "readonly": 0,
+                "disabled": 0
+            },
+            {
+                "key": "field_56d824ff462bb",
+                "label": "Poza Facebook",
+                "name": "poza_facebook",
+                "type": "select",
+                "instructions": "In momentul in care cineva da share (pe Facebook) la pagina, putem sa schimba poza care sa le apara in share. Avem doua variante: <br>\r\n<ol>\r\n<li>Folosim Featured Image (Imaginea Reprezentatia) setata din partea dreapta, sub atributele paginii<\/li>\r\n<li>Incarcam o poza speciala <\/li>\r\n<\/ol><br>\r\n<strong>De retinut:<\/strong> in momentul in care incarcam o poza, ea nu se v-a incarca odata cu pagina, ci doar cand vom face share. Deci nu avem de ce sa ne ingrijoram ca apare pe pagina sau ca ne ingreuneaza incarcarea paginii. ",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": {
+                    "Featured Image": "Featured Image",
+                    "Poza speciala": "Poza speciala"
+                },
+                "default_value": [],
+                "allow_null": 0,
+                "multiple": 0,
+                "ui": 0,
+                "ajax": 0,
+                "placeholder": "",
+                "disabled": 0,
+                "readonly": 0
+            },
+            {
+                "key": "field_56d8262a462bc",
+                "label": "Imagine Facebook",
+                "name": "imagine_facebook",
+                "type": "image",
+                "instructions": "Incarca poza pe care o vom folosi pentru Facebook.",
+                "required": 0,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_56d824ff462bb",
+                            "operator": "==",
+                            "value": "Poza speciala"
+                        }
+                    ]
+                ],
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "return_format": "url",
+                "preview_size": "thumbnail",
+                "library": "all",
+                "min_width": "",
+                "min_height": "",
+                "min_size": "",
+                "max_width": "",
+                "max_height": "",
+                "max_size": "",
+                "mime_types": ""
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "post_type",
+                    "operator": "==",
+                    "value": "page"
+                }
+            ]
+        ],
+        "menu_order": 0,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": 1,
+        "description": ""
+    },
+    {
+        "key": "group_56d82e2d363f4",
+        "title": "Setari website",
+        "fields": [
+            {
+                "key": "field_56d82e332b81a",
+                "label": "General",
+                "name": "",
+                "type": "tab",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "placement": "left",
+                "endpoint": 0
+            },
+            {
+                "key": "field_56d82e442b81b",
+                "label": "Logo",
+                "name": "logo",
+                "type": "image",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "return_format": "url",
+                "preview_size": "thumbnail",
+                "library": "all",
+                "min_width": "",
+                "min_height": "",
+                "min_size": "",
+                "max_width": "",
+                "max_height": "",
+                "max_size": "",
+                "mime_types": ""
+            },
+            {
+                "key": "field_56d82e542b81c",
+                "label": "Social Media",
+                "name": "",
+                "type": "tab",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "placement": "left",
+                "endpoint": 0
+            },
+            {
+                "key": "field_56d82e932b81e",
+                "label": "Info",
+                "name": "info",
+                "type": "message",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "message": "Aici o sa setam link-urile catre paginile de socializare.",
+                "new_lines": "wpautop",
+                "esc_html": 0
+            },
+            {
+                "key": "field_56f006453a17f",
+                "label": "Links",
+                "name": "social_links",
+                "type": "repeater",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "collapsed": "field_56f006593a180",
+                "min": "",
+                "max": "",
+                "layout": "table",
+                "button_label": "Adauga link",
+                "sub_fields": [
+                    {
+                        "key": "field_56f006593a180",
+                        "label": "Retea sociala",
+                        "name": "retea_sociala",
+                        "type": "select",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "choices": {
+                            "fa-facebook": "Facebook",
+                            "fa-google-plus": "Google Plus",
+                            "fa-twitter": "Twitter",
+                            "fa-linkedin": "LinkedIn",
+                            "fa-pinterest-p": "Pinterest",
+                            "fa-instagram": "Instagram",
+                            "fa-youtube": "YouTube",
+                            "fa-skype": "Skype"
+                        },
+                        "default_value": [],
+                        "allow_null": 0,
+                        "multiple": 0,
+                        "ui": 1,
+                        "ajax": 0,
+                        "placeholder": "",
+                        "disabled": 0,
+                        "readonly": 0
+                    },
+                    {
+                        "key": "field_56f007852a594",
+                        "label": "Link",
+                        "name": "link",
+                        "type": "text",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
+                        "maxlength": "",
+                        "readonly": 0,
+                        "disabled": 0
+                    }
+                ]
+            },
+            {
+                "key": "field_56e2c0198b06e",
+                "label": "Custom Code",
+                "name": "",
+                "type": "tab",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "placement": "left",
+                "endpoint": 0
+            },
+            {
+                "key": "field_56e2c02b8b06f",
+                "label": "Custom CSS",
+                "name": "custom_css",
+                "type": "textarea",
+                "instructions": "Codul va fi afisat in header. Te rog sa incluzi si atributul <code>&lt;style&gt;<\/code>.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "maxlength": "",
+                "rows": "",
+                "new_lines": "",
+                "readonly": 0,
+                "disabled": 0
+            },
+            {
+                "key": "field_56e2c1aa947d1",
+                "label": "Custom JS",
+                "name": "custom_js",
+                "type": "textarea",
+                "instructions": "Codul va fi afisat in <strong>footer<\/strong>. Te rog sa incluzi si atributul <code>&lt;script&gt;<\/code>. <br \/>\r\nPoate fi folosit pentru Google Analytics.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "maxlength": "",
+                "rows": "",
+                "new_lines": "",
+                "readonly": 0,
+                "disabled": 0
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "options_page",
+                    "operator": "==",
+                    "value": "setari-website"
+                }
+            ]
+        ],
+        "menu_order": 0,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": 1,
+        "description": ""
+    }
+]
