@@ -69,3 +69,30 @@ function nx_pagination($query) {
 	
 }
 
+// Add mobile CSS class to body
+function nx_body_classes( $classes ) {
+	
+	if(wp_is_mobile()){
+		
+		$classes[] = 'nx-mobile';
+		
+	}
+	
+	return $classes;
+}
+add_filter( 'body_class', 'nx_body_classes' );
+
+// Register the sidebars
+function nx_widgets_init() {
+	register_sidebar( array(
+		'name'          => esc_html_x( 'Sidebar', 'Sidebar name', 'nexus-admin' ),
+		'id'            => 'sidebar',
+		'description'   => '',
+		'before_widget' => '<section id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</section>',
+		'before_title'  => '<h2 class="widget-title">',
+		'after_title'   => '</h2>',
+	) );
+}
+add_action( 'widgets_init', 'nx_widgets_init' );
+
