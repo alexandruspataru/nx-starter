@@ -33,6 +33,13 @@ require_once NX_CORE . 'classes/wp-bootstrap-navwalker.php';								// WP Bootst
 require_once NX_CORE . 'general-functions.php';												// General functions
 require_once NX_CORE . 'tgm-plugin-activation-config.php';									// Recommended plugins
 
+// Admin only
+if(is_admin()) {
+	
+	require_once NX_CORE . 'admin/main.php';												// Admin actions / filters
+	
+}
+
 /* Let's define the components we need for this project */
 $components = array(
 

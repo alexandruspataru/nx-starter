@@ -1,7 +1,83 @@
 <?php if ( ! defined( 'ABSPATH' ) ) exit; 
 
+/**
+ * Here we'll setup all the required functions.
+ *
+ * In case that any plugin will fall to be activated or any function is deprecated, the site will continue to work
+ * with the except of the selected functions. 
+ *
+ * Also by firing the function on the "wp" action, we make sure that the plugin can be activated / deactivated safely. 
+ *
+ */
+function nx_mandatory_functions() {
+
+    $mandatoryFunctions = array('get_field', 'have_rows', 'get_sub_field',);
+
+	foreach($mandatoryFunctions as $function){
+		
+		if(!function_exists($function)){
+			
+			$create_function	= $function;
+			$create_function	= 'function ' . $create_function . "() { return; }";
+			eval($create_function);
+
+		}
+		
+	}
+}
+add_action('wp', 'nx_mandatory_functions');
+
+// Creating a better var_dump
+function nx_dump($toDebug = '', $container = false){
+
+	$html						 = '<div class="nx-debug">';
+	$html						.= ($container === true) ? '<div class="container"><div class="row"><div class="col-xs-12">' : '';
+	$html						.= '<pre><xmp>' . var_export($toDebug, true) . '</xmp></pre>';
+	$html						.= ($container === true) ? '</div></div></div>' : '';
+	$html						.= '</div>';
+	
+	echo $html;
+	
+}
+
+// Add mobile CSS class to body
+function nx_body_classes( $classes ) {
+	
+	if(wp_is_mobile()){
+		
+		$classes[]		 = 'nx-mobile';
+		
+	}
+	
+	// Add the custom body class
+	$pageInfo			 = nx_get_page_custom_fields();
+	
+	if(is_array($pageInfo) && isset($pageInfo['nx_page_custom_body_class']) && !empty($pageInfo['nx_page_custom_body_class'])){
+		
+		$classes[]		 = $pageInfo['nx_page_custom_body_class'];
+	}
+	
+	return $classes;
+	
+}
+add_filter( 'body_class', 'nx_body_classes' );
+
+// Register the sidebars
+function nx_widgets_init() {
+	register_sidebar( array(
+		'name'          => esc_html_x( 'Sidebar', 'Sidebar name', 'nexus-admin' ),
+		'id'            => 'sidebar',
+		'description'   => '',
+		'before_widget' => '<section id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</section>',
+		'before_title'  => '<h2 class="widget-title">',
+		'after_title'   => '</h2>',
+	) );
+}
+add_action( 'widgets_init', 'nx_widgets_init' );
+
 // Loops pagination
-function nx_pagination($query) {
+function nx_pagination($query = '') {
 	
 	// Need an unlikely integer
 	$big				 = 999999999; 
@@ -69,30 +145,159 @@ function nx_pagination($query) {
 	
 }
 
-// Add mobile CSS class to body
-function nx_body_classes( $classes ) {
+// Get the page info
+function nx_get_page_custom_fields($id = ''){
 	
-	if(wp_is_mobile()){
+	// Try to get the cached result
+	$pageInfo								 = wp_cache_get( 'nx_page_custom_fields' );
+	
+	if ( false === $pageInfo ) {
+	
+		// Store the default data
+		$pageInfo						 	 = array(
+			'nx_page_custom_css'			 => '',
+			'nx_page_custom_js'				 => '',
+			'nx_page_custom_body_class'		 => '',
+		);
 		
-		$classes[] = 'nx-mobile';
+		// Store the custom fields
+		$customFields						 = array();
+		
+		// Singular
+		if(is_singular()){
+			
+			$postID							 = (!empty($id) && is_numeric($id)) ? $id : get_the_ID();
+			$customFields					 = get_post_meta($postID);
+
+		}
+		
+		// Category
+		elseif(is_category()){
+			
+			$termInfo						 = get_queried_object();
+			$customFields					 = get_term_meta($termInfo->term_id);
+		
+		}
+
+		// Asign the custom fields
+		if(!empty($customFields) && is_array($customFields)){
+		
+			foreach($pageInfo as $key => $value){
+					
+				$pageInfo[$key]				 = (isset($customFields[$key][0])) ? $customFields[$key][0] : $pageInfo[$key];
+				
+			}
+		
+		}
+		
+		// Add the page info to caching
+		wp_cache_set( 'nx_page_custom_fields', $pageInfo );
+		
+	}
+
+	return $pageInfo;
+	
+}
+
+// Insert the page custom meta + styles
+function nx_inject_wp_head(){
+	
+	// Get the current fields
+	$pageInfo				 = nx_get_page_custom_fields();
+	
+	// Something is wrong
+	if(!is_array($pageInfo)) return;
+	
+	// Store the markup
+	$html					 = "\n\n\t<!-- Page Settings start -->";
+	
+	// Custom CSS
+	if(isset($pageInfo['nx_page_custom_css']) && !empty($pageInfo['nx_page_custom_css'])){
+		
+		$html				.= "\n\t" . $pageInfo['nx_page_custom_css'];
 		
 	}
 	
-	return $classes;
+	$html					.= "\n\t<!-- Page Settings end -->\n\n";
+	
+	// Output everything
+	echo $html;
+	
 }
-add_filter( 'body_class', 'nx_body_classes' );
+add_action('wp_head', 'nx_inject_wp_head');
 
-// Register the sidebars
-function nx_widgets_init() {
-	register_sidebar( array(
-		'name'          => esc_html_x( 'Sidebar', 'Sidebar name', 'nexus-admin' ),
-		'id'            => 'sidebar',
-		'description'   => '',
-		'before_widget' => '<section id="%1$s" class="widget %2$s">',
-		'after_widget'  => '</section>',
-		'before_title'  => '<h2 class="widget-title">',
-		'after_title'   => '</h2>',
-	) );
+// Insert page scripts - after page scripts are already loaded (n.r. jQuery & vendor.js).
+function nx_inject_wp_footer(){
+	
+	// Get the current fields
+	$pageInfo				 = nx_get_page_custom_fields();
+	
+	// Something is wrong
+	if(!is_array($pageInfo)) return;
+	
+	// Custom CSS
+	if(isset($pageInfo['nx_page_custom_js']) && !empty($pageInfo['nx_page_custom_js'])){
+		
+		// Store the markup
+		
+		$html				 = "\n\n\t<!-- Page Scripts start -->";
+		$html				.= "\n\t" . $pageInfo['nx_page_custom_js'];
+		$html				.= "\n\t<!-- Page Scripts end -->\n\n";
+		
+		// Output everything
+		echo $html;
+		
+	}
+	
 }
-add_action( 'widgets_init', 'nx_widgets_init' );
+add_action('wp_footer', 'nx_inject_wp_footer', 90);
 
+// Store the website settings
+function nx_get_site_config($field = ''){
+	
+	// Get the database connection
+	global $wpdb;
+	
+	// Store all the settings
+	$settings						 = wp_cache_get( 'nx_site_settings' );
+	
+	if ( false === $settings ) {
+	
+		// Get all the site settings
+		$result						 = $wpdb->get_results ("SELECT option_name, option_value FROM {$wpdb->options} WHERE option_name LIKE 'options_nx_site_%'", ARRAY_A);
+		
+		if(!empty($result) && is_array($result)){
+			
+			foreach($result as $option){
+				
+				// Remove the options_ from name
+				$optionName			 = str_replace('options_', '', $option['option_name']);
+				
+				// Add the result to output
+				$settings[$optionName] = $option['option_value'];
+				
+			}
+			
+		}
+		
+		// Add the page info to caching
+		wp_cache_set( 'nx_site_settings', $settings );
+	
+	}
+	
+	// Return a specific setting / field or the entire array
+	if(!empty($field)){
+		
+		// Return nothing if the key doesn exist
+		return (array_key_exists($field, $settings)) ? $settings[$field] : '';
+	
+	}
+	
+	// Return everything
+	else {
+		
+		return $settings;
+		
+	}
+
+}

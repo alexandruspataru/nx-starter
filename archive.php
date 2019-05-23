@@ -24,7 +24,7 @@ get_header();
 					endwhile;
 					
 					/* Pagination */
-					nexus_pagination();
+					nx_pagination();
 				?>
 	
 				<?php

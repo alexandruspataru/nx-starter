@@ -4,7 +4,7 @@
 require_once NX_CORE . 'classes/tgm-plugin-activation.php';
 
 // Register the plugins list
-function nexus_admin_register_required_plugins() {
+function nx_admin_register_required_plugins() {
 
 	$plugins = array(
 	
@@ -86,4 +86,4 @@ function nexus_admin_register_required_plugins() {
 	tgmpa( $plugins, $config );
 	
 }
-add_action( 'tgmpa_register', 'nexus_admin_register_required_plugins' );
+add_action( 'tgmpa_register', 'nx_admin_register_required_plugins' );

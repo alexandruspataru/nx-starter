@@ -4,7 +4,7 @@
  * @AlexSpataru 02 Nov 2018
  * Register & Enqueue the styles / scripts
  */ 
-function nexus_scripts() {
+function nx_scripts() {
 	
 	// Minified or not assets
 	$vendor				 = (NX_DEV === TRUE) ? 'vendor' : 'vendor.min';
@@ -32,11 +32,11 @@ function nexus_scripts() {
 	wp_dequeue_style('wp-block-library');
 
 }
-add_action( 'wp_enqueue_scripts', 'nexus_scripts' );
+add_action( 'wp_enqueue_scripts', 'nx_scripts' );
 
 // Remove version from scripts and styles
 // Source: https://wordpress.stackexchange.com/questions/233543/how-to-remove-the-wordpress-version-from-some-css-js-files
-function remove_version_scripts_styles($src) {
+function nx_remove_version_scripts_styles($src) {
 	
 	// PHP Shorthand - https://davidwalsh.name/php-ternary-examples
 	$src = (strpos($src, 'ver=')) ? remove_query_arg('ver', $src) : $src;
@@ -44,5 +44,5 @@ function remove_version_scripts_styles($src) {
     return $src;
 	
 }
-add_filter('style_loader_src', 'remove_version_scripts_styles', 9999);
-add_filter('script_loader_src', 'remove_version_scripts_styles', 9999);
+add_filter('style_loader_src', 'nx_remove_version_scripts_styles', 9999);
+add_filter('script_loader_src', 'nx_remove_version_scripts_styles', 9999);
