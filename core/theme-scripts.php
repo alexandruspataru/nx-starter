@@ -1,10 +1,11 @@
 <?php if ( ! defined( 'ABSPATH' ) ) exit;
  
 /**
- * @AlexSpataru 02 Nov 2018
+ * @AlexSpataru
+ * Last changed: 28 May 2019
  * Register & Enqueue the styles / scripts
  */ 
-function nx_scripts() {
+function nx_enqueue_scripts() {
 	
 	// Minified or not assets
 	$vendor				 = (NX_DEV === TRUE) ? 'vendor' : 'vendor.min';
@@ -32,7 +33,7 @@ function nx_scripts() {
 	wp_dequeue_style('wp-block-library');
 
 }
-add_action( 'wp_enqueue_scripts', 'nx_scripts' );
+add_action( 'wp_enqueue_scripts', 'nx_enqueue_scripts' );
 
 // Remove version from scripts and styles
 // Source: https://wordpress.stackexchange.com/questions/233543/how-to-remove-the-wordpress-version-from-some-css-js-files

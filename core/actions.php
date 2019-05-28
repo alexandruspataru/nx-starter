@@ -26,3 +26,43 @@ function nx_excerpt_more( $more ) {
 }
 add_filter( 'excerpt_more', 'nx_excerpt_more' );
 
+// Edit the archives title format
+add_filter( 'get_the_archive_title', function ($title) {
+
+	if ( is_category() ) {
+
+		$title = single_cat_title( '', false );
+
+	} elseif ( is_tag() ) {
+
+		$title = single_tag_title( '', false );
+
+	} elseif ( is_author() ) {
+
+		$title = get_the_author();
+
+	} elseif ( is_month() ){
+		
+		$title = single_month_title('', false);
+		
+	} elseif ( is_year() ){
+		
+		$title = get_the_date( 'Y' );
+		
+	} elseif ( is_day() ) {
+		
+        $title = get_the_date( 'j F Y' );
+		
+    } elseif ( is_post_type_archive() ) {
+		
+        $title = post_type_archive_title( '', false );
+		
+    } elseif ( is_tax() ) {
+		
+        $title = single_term_title( '', false );
+		
+    }
+
+    return $title;
+
+});

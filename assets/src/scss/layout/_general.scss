@@ -25,3 +25,15 @@
 #back-to-top.show {
     opacity: 1;
 }
+
+.navbar-brand{
+	padding: 0;
+	margin-left:0 !important;
+}
+
+.navbar-brand img{
+	width:100%;
+	height:auto;
+	max-width:250px;
+	max-height:50px;
+}

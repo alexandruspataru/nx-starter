@@ -1,12 +1,14 @@
 <?php if ( ! defined( 'ABSPATH' ) ) { exit; }
 
+require_once(NX_CORE . 'admin/wp-bootstrap-navwalker.php');
+
 // Custom fields
 if(function_exists('acf_add_options_page')){
 	
 	// Theme options page
 	acf_add_options_page(array(
-		'page_title'		 => _x('Website settings', '', 'nexus-admin'),
-		'menu_title'		 => _x('Website settings', '', 'nexus-admin'),
+		'page_title'		 => 'Website settings',
+		'menu_title'		 => 'Website settings',
 		'menu_slug'			 => 'website-settings',
 		'capability'		 => 'edit_posts',
 		'redirect'			 => false

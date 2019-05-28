@@ -65,7 +65,7 @@ add_filter( 'body_class', 'nx_body_classes' );
 // Register the sidebars
 function nx_widgets_init() {
 	register_sidebar( array(
-		'name'          => esc_html_x( 'Sidebar', 'Sidebar name', 'nexus-admin' ),
+		'name'          => 'Main Sidebar',
 		'id'            => 'sidebar',
 		'description'   => '',
 		'before_widget' => '<section id="%1$s" class="widget %2$s">',

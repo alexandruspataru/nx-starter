@@ -1,0 +1,25 @@
+{
+  "name": "nx-starter",
+  "version": "1.0.0",
+  "description": "Custom starter WordPress theme.",
+  "main": "index.php",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alexandruspataru/nx-starter"
+  },
+  "author": "alex-spataru",
+  "license": "MIT",
+  "devDependencies": {
+    "grunt": "latest",
+    "grunt-contrib-cssmin": "latest",
+    "grunt-contrib-uglify": "latest",
+    "grunt-contrib-uglify-es": "latest",
+    "grunt-contrib-watch": "latest",
+    "grunt-sass": "latest",
+    "jit-grunt": "latest",
+    "terser-webpack-plugin": "latest"
+  },
+  "dependencies": {
+    "node-sass": "latest"
+  }
+}
