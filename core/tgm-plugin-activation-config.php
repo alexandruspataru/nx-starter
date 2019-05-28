@@ -1,8 +1,5 @@
 <?php if ( ! defined( 'ABSPATH' ) ) exit; 
 
-// Get the main class
-require_once NX_CORE . 'classes/tgm-plugin-activation.php';
-
 // Register the plugins list
 function nx_admin_register_required_plugins() {
 
