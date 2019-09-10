@@ -134,7 +134,7 @@ function nx_pagination($query = '') {
 			// Pages loop
 			foreach ( $pages as $page ) {
 				
-				echo '<li class="nx-pagination-li">$page</li>';
+				echo "<li class=\"nx-pagination-li\">$page</li>";
 				
 			}
 			
@@ -202,6 +202,16 @@ function nx_get_page_custom_fields($id = ''){
 // Insert the page custom meta + styles
 function nx_inject_wp_head(){
 	
+	// Get the site Javascript
+	$siteCustomCSS			 = nx_get_site_config('custom_css');
+	if(!empty($siteCustomCSS)){
+		
+		echo "\n\n\t<!-- Site Custom CSS start -->\n\t";
+		echo $siteCustomCSS;
+		echo "\n\t<!-- Site Custom CSS -->\n\n";
+		
+	}
+	
 	// Get the current fields
 	$pageInfo				 = nx_get_page_custom_fields();
 	
@@ -229,13 +239,23 @@ add_action('wp_head', 'nx_inject_wp_head');
 // Insert page scripts - after page scripts are already loaded (n.r. jQuery & vendor.js).
 function nx_inject_wp_footer(){
 	
+	// Get the site Javascript
+	$siteCustomJS			 = nx_get_site_config('custom_js');
+	if(!empty($siteCustomJS)){
+		
+		echo "\n\n\t<!-- Site Custom Javascript start -->\n\t";
+		echo $siteCustomJS;
+		echo "\n\t<!-- Site Custom Javascript -->\n\n";
+		
+	}
+	
 	// Get the current fields
 	$pageInfo				 = nx_get_page_custom_fields();
 	
 	// Something is wrong
 	if(!is_array($pageInfo)) return;
 	
-	// Custom CSS
+	// Custom Javascript
 	if(isset($pageInfo['nx_page_custom_js']) && !empty($pageInfo['nx_page_custom_js'])){
 		
 		// Store the markup
@@ -266,18 +286,43 @@ function nx_get_site_config($field = ''){
 		// Get all the site settings
 		$result						 = $wpdb->get_results ("SELECT option_name, option_value FROM {$wpdb->options} WHERE option_name LIKE 'options_nx_site_%'", ARRAY_A);
 		
+		// Keep the social networks
+		$links						 = array();
+		$networks					 = array();
+		
 		if(!empty($result) && is_array($result)){
 			
 			foreach($result as $option){
 				
 				// Remove the options_ from name
-				$optionName			 = str_replace('options_', '', $option['option_name']);
+				$optionName			 = str_replace('options_nx_site_', '', $option['option_name']);
 				
-				// Add the result to output
-				$settings[$optionName] = $option['option_value'];
+				// Social network links
+				if(strpos($optionName, 'social_networks_') !== false && strpos($optionName, '_link') !== false){
+					
+					$links[]		 = $option['option_value'];
+					
+				}
+				
+				// Social network links
+				elseif(strpos($optionName, 'social_networks_') !== false && strpos($optionName, '_network') !== false){
+					
+					$networks[]		 = $option['option_value'];
+					
+				} 
+				
+				else{
+					
+					// Add the result to output
+					$settings[$optionName] = $option['option_value'];
+					
+				}
 				
 			}
 			
+			// Adding the social networks
+			$settings['social_networks'] = (!empty($links) && !empty($networks)) ? array_combine($networks, $links) : array();
+		
 		}
 		
 		// Add the page info to caching
@@ -301,3 +346,51 @@ function nx_get_site_config($field = ''){
 	}
 
 }
+
+// Check if the page / post has a custom title 
+function nx_page_title(){
+	
+	// Do nothing if the place from where the function was called is not singular
+	if(!is_singular()) return '';
+		
+	// Get all the site meta into a variable so we'll not make a ton of queries using the get_field() function (from ACF plugin)
+	$meta				 = get_post_meta(get_the_ID());
+	
+	// Default title
+	$cssClass			 = 'nx-default-title';
+	
+	// Should we display the page title? Default: Yes
+	$showTitle			 = (array_key_exists('nx_enable_page_title', $meta)) ? $meta['nx_enable_page_title'][0] : 1;
+	
+	// Get the subtitle
+	$subTitle			 = (array_key_exists('nx_page_subtitle', $meta)) ? $meta['nx_page_subtitle'][0] : '';
+	
+	
+	
+	// Get the custom title
+	$customTitle		 = '';
+	if(array_key_exists('nx_custom_title', $meta)){
+		
+		$customTitle	 = $meta['nx_custom_title'][0];
+		$cssClass		 = 'nx-custom-title';
+
+	}
+	
+	// Display the title only if we checked that we want to display it
+	if($showTitle == 1){
+		
+		// Get the final title
+		$postTitle		 = ($customTitle !== '' && !empty($customTitle)) ? $customTitle : get_the_title();
+		
+		// Get the subtitle
+		$postSubTitle	 = ($subTitle !== '' && !empty($subTitle)) ? '<span class="nx-subtitle">' . $subTitle . '</span>' : '';
+		
+		// Final title
+		$titleHTML		 = '<h1 class="page-title ' . $cssClass . '">' . $postTitle . ' ' . $postSubTitle . '</h1>';
+		
+		return $titleHTML;
+		
+	}
+
+}
+

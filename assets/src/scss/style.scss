@@ -2,16 +2,24 @@
 @import 'layout/variables';
 @import 'layout/mixins';
 
-
 // Vendor
 @import 'plugins/bootstrap';
 @import 'plugins/font-awesome';
+@import 'plugins/jquery.fancybox';
+@import 'plugins/owl-carousel';
 
 // Project files
 @import 'layout/header';
 @import 'layout/footer';
 @import 'layout/wordpress';
+@import 'layout/typography';
 @import 'layout/general';
+
+// Widgets
+@import 'widgets/accordion';
+@import 'widgets/lightbox-img';
+@import 'widgets/slider';
+@import 'widgets/modal';
 
 // Pages
 @import 'pages/home';

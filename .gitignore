@@ -48,3 +48,4 @@ Temporary Items
 
 #Grunt and so on
 node_modules
+assets/package-lock.json

@@ -37,3 +37,9 @@
 	max-width:250px;
 	max-height:50px;
 }
+
+body{
+	overflow-x:hidden;
+	color:$dark-color;
+	font-family: $primary-font;
+}

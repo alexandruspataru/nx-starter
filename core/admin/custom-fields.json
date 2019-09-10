@@ -1,54 +1,101 @@
 [
     {
-        "key": "group_5ce680d35e441",
-        "title": "Page settings",
+        "key": "group_5b5074be2d8cd",
+        "title": "Page Settings",
         "fields": [
             {
-                "key": "field_5ce68198f2650",
-                "label": "Custom CSS",
-                "name": "nx_page_custom_css",
-                "type": "textarea",
-                "instructions": "Please include the <code>&#x3C;style&#x3E;&#x3C;\/style&#x3E;<\/code> tag.",
+                "key": "field_5b50750343036",
+                "label": "Hero image",
+                "name": "nx_hero_image",
+                "type": "image",
+                "instructions": "Custom header image",
                 "required": 0,
-                "conditional_logic": 0,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_5bfd46bf26e9d",
+                            "operator": "!=empty"
+                        }
+                    ]
+                ],
                 "wrapper": {
                     "width": "",
                     "class": "",
                     "id": ""
                 },
-                "default_value": "",
-                "placeholder": "",
-                "maxlength": "",
-                "rows": 4,
-                "new_lines": ""
+                "return_format": "id",
+                "preview_size": "thumbnail",
+                "library": "all",
+                "min_width": "",
+                "min_height": "",
+                "min_size": "",
+                "max_width": "",
+                "max_height": "",
+                "max_size": "",
+                "mime_types": ""
             },
             {
-                "key": "field_5ce681b3f2651",
-                "label": "Custom Javascript",
-                "name": "nx_page_custom_js",
-                "type": "textarea",
-                "instructions": "Please include the <code>&#x3C;script&#x3E;&#x3C;\/script&#x3E;<\/code> tag.",
-                "required": 0,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "default_value": "",
-                "placeholder": "",
-                "maxlength": "",
-                "rows": 4,
-                "new_lines": ""
-            },
-            {
-                "key": "field_5ce6820a426a9",
-                "label": "Custom body class (CSS)",
-                "name": "nx_page_custom_body_class",
-                "type": "text",
+                "key": "field_5b50ae5067a7e",
+                "label": "Show page title \/ subtitle?",
+                "name": "nx_enable_page_title",
+                "type": "true_false",
                 "instructions": "",
                 "required": 0,
                 "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "message": "",
+                "default_value": 1,
+                "ui": 0,
+                "ui_on_text": "",
+                "ui_off_text": ""
+            },
+            {
+                "key": "field_5b50aead67a7f",
+                "label": "Custom title",
+                "name": "nx_custom_title",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_5b50ae5067a7e",
+                            "operator": "==",
+                            "value": "1"
+                        }
+                    ]
+                ],
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_5b50b042ae49a",
+                "label": "Subtitle",
+                "name": "nx_page_subtitle",
+                "type": "text",
+                "instructions": "The field will be displayed under the title",
+                "required": 0,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_5b50ae5067a7e",
+                            "operator": "==",
+                            "value": "1"
+                        }
+                    ]
+                ],
                 "wrapper": {
                     "width": "",
                     "class": "",
@@ -66,21 +113,14 @@
                 {
                     "param": "post_type",
                     "operator": "==",
-                    "value": "post"
+                    "value": "page"
                 }
             ],
             [
                 {
                     "param": "post_type",
                     "operator": "==",
-                    "value": "page"
-                }
-            ],
-            [
-                {
-                    "param": "taxonomy",
-                    "operator": "==",
-                    "value": "category"
+                    "value": "post"
                 }
             ]
         ],
@@ -94,12 +134,12 @@
         "description": ""
     },
     {
-        "key": "group_5ce696c14d245",
-        "title": "Site settings",
+        "key": "group_5b50650243e6f",
+        "title": "Site Settings",
         "fields": [
             {
-                "key": "field_5ce6994d61c4e",
-                "label": "Contact Info",
+                "key": "field_5b5aec08a4d76",
+                "label": "General",
                 "name": "",
                 "type": "tab",
                 "instructions": "",
@@ -114,9 +154,33 @@
                 "endpoint": 0
             },
             {
-                "key": "field_5ce699e6c3ff2",
+                "key": "field_5b50743244dd3",
+                "label": "Logo",
+                "name": "nx_site_logo",
+                "type": "image",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "return_format": "url",
+                "preview_size": "thumbnail",
+                "library": "all",
+                "min_width": "",
+                "min_height": "",
+                "min_size": "",
+                "max_width": "",
+                "max_height": "",
+                "max_size": "",
+                "mime_types": ""
+            },
+            {
+                "key": "field_5b50668a8df3f",
                 "label": "Phone number",
-                "name": "nx_site_phone_number",
+                "name": "nx_site_phone",
                 "type": "text",
                 "instructions": "",
                 "required": 0,
@@ -133,9 +197,9 @@
                 "maxlength": ""
             },
             {
-                "key": "field_5ce699f5c3ff3",
-                "label": "Email address",
-                "name": "nx_site_email_address",
+                "key": "field_5b5066a38df40",
+                "label": "Email",
+                "name": "nx_site_email",
                 "type": "text",
                 "instructions": "",
                 "required": 0,
@@ -152,10 +216,10 @@
                 "maxlength": ""
             },
             {
-                "key": "field_5ce6997cc3fef",
-                "label": "Facebook",
-                "name": "nx_site_facebook",
-                "type": "text",
+                "key": "field_5b5066aa8df41",
+                "label": "Social networks",
+                "name": "nx_site_social_networks",
+                "type": "repeater",
                 "instructions": "",
                 "required": 0,
                 "conditional_logic": 0,
@@ -164,90 +228,64 @@
                     "class": "",
                     "id": ""
                 },
-                "default_value": "",
-                "placeholder": "",
-                "prepend": "",
-                "append": "",
-                "maxlength": ""
+                "collapsed": "field_5b5066c38df42",
+                "min": 0,
+                "max": 0,
+                "layout": "table",
+                "button_label": "Add network",
+                "sub_fields": [
+                    {
+                        "key": "field_5b5066c38df42",
+                        "label": "Social Network",
+                        "name": "network",
+                        "type": "select",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "choices": {
+                            "facebook": "Facebook",
+                            "instagram": "Instagram",
+                            "linkedin": "LinkedIn",
+                            "pinterest-p": "Pinterest",
+                            "snapchat": "Snapchat",
+                            "tumblr": "Tumblr",
+                            "twitter": "Twitter",
+                            "xing": "Xing",
+                            "youtube-play": "YouTube"
+                        },
+                        "default_value": [],
+                        "allow_null": 0,
+                        "multiple": 0,
+                        "ui": 0,
+                        "return_format": "value",
+                        "ajax": 0,
+                        "placeholder": ""
+                    },
+                    {
+                        "key": "field_5b5069c48df43",
+                        "label": "Link",
+                        "name": "link",
+                        "type": "url",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "placeholder": ""
+                    }
+                ]
             },
             {
-                "key": "field_5ce69985c3ff0",
-                "label": "Twitter",
-                "name": "nx_site_twitter",
-                "type": "text",
-                "instructions": "",
-                "required": 0,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "default_value": "",
-                "placeholder": "",
-                "prepend": "",
-                "append": "",
-                "maxlength": ""
-            },
-            {
-                "key": "field_5ce69a23c3ff4",
-                "label": "LinkedIn",
-                "name": "nx_site_linkedin",
-                "type": "text",
-                "instructions": "",
-                "required": 0,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "default_value": "",
-                "placeholder": "",
-                "prepend": "",
-                "append": "",
-                "maxlength": ""
-            },
-            {
-                "key": "field_5ce6999fc3ff1",
-                "label": "Instagram",
-                "name": "nx_site_instagram",
-                "type": "text",
-                "instructions": "",
-                "required": 0,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "default_value": "",
-                "placeholder": "",
-                "prepend": "",
-                "append": "",
-                "maxlength": ""
-            },
-            {
-                "key": "field_5ce69a2bc3ff5",
-                "label": "Pinterest",
-                "name": "nx_site_pinterest",
-                "type": "text",
-                "instructions": "",
-                "required": 0,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "default_value": "",
-                "placeholder": "",
-                "prepend": "",
-                "append": "",
-                "maxlength": ""
-            },
-            {
-                "key": "field_5ce69a63c3ff6",
+                "key": "field_5bebe005b8cf6",
                 "label": "Custom code",
                 "name": "",
                 "type": "tab",
@@ -259,15 +297,15 @@
                     "class": "",
                     "id": ""
                 },
-                "placement": "left",
+                "placement": "top",
                 "endpoint": 0
             },
             {
-                "key": "field_5ce69a74c3ff7",
+                "key": "field_5bebe015b8cf7",
                 "label": "Custom CSS",
                 "name": "nx_site_custom_css",
                 "type": "textarea",
-                "instructions": "Please include the <code>&#x3C;style&#x3E;&#x3C;\/style&#x3E;<\/code> tag.",
+                "instructions": "",
                 "required": 0,
                 "conditional_logic": 0,
                 "wrapper": {
@@ -282,11 +320,11 @@
                 "new_lines": ""
             },
             {
-                "key": "field_5ce69a83c3ff8",
-                "label": "Custom javascript",
+                "key": "field_5bebe039b8cf8",
+                "label": "Google Analytics",
                 "name": "nx_site_custom_js",
                 "type": "textarea",
-                "instructions": "This field can be used for Google Tag Manager \/ Google Analytics.<br>\r\nPlease include the <code>&#x3C;script&#x3E;&#x3C;\/script&#x3E;<\/code> tag.",
+                "instructions": "",
                 "required": 0,
                 "conditional_logic": 0,
                 "wrapper": {

@@ -1,12 +1,9 @@
 <?php /* Template name: Playground - Development tests */
 
 if ( ! defined( 'ABSPATH' ) ) exit;
-get_header();
 
-// Only the developer should access this page
-$userID		 = get_current_user_id();
-
-if(!is_numeric($userID) || $userID < 1){
+// Only the admins should access this page
+if(!is_super_admin()){
 
 	// Redirect to homepage
 	wp_safe_redirect( home_url() );
@@ -14,8 +11,12 @@ if(!is_numeric($userID) || $userID < 1){
 
 }
 
+get_header();
+
 // Start debugging
 $info					 = 'some info';
+$info					 = nx_get_site_config();
+
 nx_dump($info, true);
 
 ?>
@@ -26,6 +27,8 @@ nx_dump($info, true);
 			
 			<?php
 				while ( have_posts() ) : the_post();
+				
+					echo nx_page_title();
 
 					the_content();
 

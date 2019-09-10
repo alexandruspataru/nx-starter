@@ -1,8 +1,8 @@
 <?php if ( ! defined( 'ABSPATH' ) ) exit;
 
 // Theme defines
-define('NX_ROOT', get_template_directory() . '/');											// Template root - for Front-End
-define('NX_PATH', get_template_directory_uri() . '/');										// Template path - for Back-End (includes)
+define('NX_ROOT', get_template_directory() . '/');											// Template root - for Back-End (includes)
+define('NX_PATH', get_template_directory_uri() . '/');										// Template path - for Front-End
 define('NX_CORE', NX_ROOT . 'core/');														// Core folder path
 define('NX_DEV', (strpos($_SERVER['HTTP_HOST'], '.host') !== false) ? TRUE : FALSE);		// Theme development status - True on .host tdl (custom virtual hosts)
 
@@ -27,10 +27,5 @@ require_once (NX_CORE . 'theme-scripts.php');												// Styles & Scripts
 require_once (NX_CORE . 'actions.php');														// Actions & Filters
 require_once (NX_CORE . 'admin/wp-bootstrap-navwalker.php');								// WP Bootstrap Navwalker
 require_once (NX_CORE . 'general-functions.php');											// General functions
-
-// Admin only
-if(is_admin()) {
-	
-	require_once (NX_CORE . 'admin/main.php');												// Admin actions / filters
-	
-}
+require_once (NX_CORE . 'shortcode-gallery.php');											// Gallery shortcode
+require_once (NX_ROOT . 'widgets/main.php');												// SiteOrigin Page Builder - Custom widgets

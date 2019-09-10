@@ -1,0 +1,54 @@
+.nx-lightbox-img{
+
+	a{
+		// By displaying the link block, we fix two issues: 
+		//		1. https://github.com/fancyapps/fancybox/issues/169
+		//		2. The wrong margins caused by the display:inline-block from the scss/layout/_ui-kit.scss
+		display:block !important;
+		position:relative;
+		width:100%;
+		
+		&:after{
+			display:none;
+		}
+		
+	}
+	
+	img{
+		margin:0 auto;
+	}
+	
+	// Video embed
+	&.nx-width-video{
+	
+		a:before{
+			position:absolute;
+			width:100%;
+			height:100%;
+			content:'';
+			@include bg-opacity($dark-bg-color,0.3);
+			@include transition(0.4s);
+		}
+		
+		a:hover:before{
+			@include bg-opacity($dark-bg-color,0.5);
+			
+		}
+	
+		i.fa{
+			position:absolute;
+			top:50%;
+			left:50%;
+			margin-top:-50px;
+			margin-left:-50px;
+			width:100px;
+			height:100px;
+			line-height:100px;
+			font-size:90px;
+			z-index:5;
+			color:rgba($light-bg-color,0.9);
+		}
+	
+	}
+
+}

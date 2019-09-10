@@ -1,8 +1,5 @@
 // Need another plugin? https://www.npmjs.com/ here's an example installation of JSHint
-// npm install -g grunt-cli
-// npm install -g node-sass
-// npm install grunt-contrib-uglify-es --save-dev
-// npm install
+// npm install -g grunt-cli && npm install -g npm && npm install -g node-sass && npm install
 
 module.exports = function(grunt) {
 	

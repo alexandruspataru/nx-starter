@@ -48,3 +48,8 @@
 	clear: both;
 	width: 100%;
 }
+
+@mixin bg-opacity($color, $opacity: 0.3) {
+    background: $color; /* The Fallback */
+    background: rgba($color, $opacity);
+}

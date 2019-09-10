@@ -12,6 +12,8 @@ get_header();
 			<?php
 				while ( have_posts() ) : the_post();
 
+					echo nx_page_title();
+					
 					the_content();
 
 				endwhile; // End of the loop.

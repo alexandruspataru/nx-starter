@@ -22,7 +22,7 @@ get_header();
 
 					endwhile;
 
-					nexus_pagination();
+					nx_pagination();
 
 			else :
 

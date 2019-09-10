@@ -1,0 +1,35 @@
+h1, .h1{
+	font-family:$secondary-font;
+	color:$primary-color;
+}
+
+h2, .h2{
+	font-family:$secondary-font;
+	color:$primary-color;
+}
+
+h3, .h3{
+	font-family:$secondary-font;
+	color:$primary-color;
+}
+
+h4, .h4{
+	font-family:$secondary-font;
+	color:$primary-color;
+}
+
+h5, .h5{
+	font-family:$secondary-font;
+	color:$primary-color;
+}
+
+h6, .h6{
+	font-family:$secondary-font;
+	color:$primary-color;
+}
+
+// Resetting the focus outline / border
+*:focus, .btn:focus, *:active:focus, .btn:active:focus, {
+	border:none;
+	outline:none;
+}
