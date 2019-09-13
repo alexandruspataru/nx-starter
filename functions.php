@@ -25,7 +25,7 @@ add_action( 'after_setup_theme', 'nx_theme_setup' );
 // Includes
 require_once (NX_CORE . 'theme-scripts.php');												// Styles & Scripts
 require_once (NX_CORE . 'actions.php');														// Actions & Filters
-require_once (NX_CORE . 'admin/wp-bootstrap-navwalker.php');								// WP Bootstrap Navwalker
+require_once (NX_CORE . 'admin/main.php');													// Admin settings
 require_once (NX_CORE . 'general-functions.php');											// General functions
 require_once (NX_CORE . 'shortcode-gallery.php');											// Gallery shortcode
 require_once (NX_ROOT . 'widgets/main.php');												// SiteOrigin Page Builder - Custom widgets

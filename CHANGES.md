@@ -1,3 +1,6 @@
+#### 0.5
+* __Bugfix__ The website settings registration were missing
+
 #### 0.4
 * __Added__ Site custom Javascript
 * __Added__ Site custom CSS

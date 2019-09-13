@@ -1,7 +1,8 @@
 <?php if ( ! defined( 'ABSPATH' ) ) { exit; }
 
-require_once(NX_CORE . 'admin/tgm-plugin-activation.php');
-require_once(NX_CORE . 'tgm-plugin-activation-config.php');
+//require_once(NX_CORE . 'admin/tgm-plugin-activation.php');
+//require_once(NX_CORE . 'tgm-plugin-activation-config.php');
+require_once (NX_CORE . 'admin/wp-bootstrap-navwalker.php');								// WP Bootstrap Navwalker
 
 // Custom fields
 if(function_exists('acf_add_options_page')){
