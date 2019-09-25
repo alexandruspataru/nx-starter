@@ -1,0 +1,48 @@
+.nx-footer{
+	background: #8c8c8c;
+	margin-top:20px;
+	
+	.nx-footer-top{
+		padding:30px 0;
+		
+		.widget-title{
+			margin-top:0;
+			color:#000;
+		}
+		
+		a{
+			color:#000;
+			text-decoration:none;
+		}
+	
+		ul{
+			padding-left: 0;
+			list-style: none;
+			margin-left: 0;
+		}
+	
+	}
+	
+	// Copyright
+	.nx-copyright{
+		padding:10px 0;
+		background:#484848;
+		color:#fff;
+		
+		.nx-right{
+			text-align:right;
+			
+			a{
+				color:#fff;
+				text-decoration:none;
+			}
+			
+			ul{
+				margin-bottom:0;
+			}
+		
+		}
+	
+	}
+
+}

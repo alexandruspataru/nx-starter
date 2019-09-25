@@ -1,3 +1,19 @@
+#### 0.6
+* __Added__ CSS - Password protected pages (form fixes)
+* __Added__ SCSS - /parts/ folder - keeping all the partials here
+* __Added__ Image - placeholder-thumb.png
+* __Added__ Footer - Copyright section
+* __Added__ Footer menu
+* __Added__ Footer Sidebars - Up to 4 columns
+* __Added__ Back to top button (again)
+* __Changed__ Footer - The widget title is not H3 instead of H2
+* __Changed__ parts/content-archive.php - added a more efficient (starter) design
+* __Changed__ parts/content-archive.php - changed the css classes names + the way we get the post info (title / link / image)
+* __Bugfix__ archive.php - added Bootstrap wrapper for archive title
+* __Bugfix__ search.php - added Bootstrap wrapper for archive title
+* __Bugfix__ search.php - the title is now H1
+* __Bugfix__ search.php - removed the sidebar
+
 #### 0.5
 * __Bugfix__ The website settings registration were missing
 

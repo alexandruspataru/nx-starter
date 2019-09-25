@@ -11116,6 +11116,50 @@ body.compensate-for-scrollbar {
   width: 100%;
 }
 
+.nx-footer {
+  background: #8c8c8c;
+  margin-top: 20px;
+}
+
+.nx-footer .nx-footer-top {
+  padding: 30px 0;
+}
+
+.nx-footer .nx-footer-top .widget-title {
+  margin-top: 0;
+  color: #000;
+}
+
+.nx-footer .nx-footer-top a {
+  color: #000;
+  text-decoration: none;
+}
+
+.nx-footer .nx-footer-top ul {
+  padding-left: 0;
+  list-style: none;
+  margin-left: 0;
+}
+
+.nx-footer .nx-copyright {
+  padding: 10px 0;
+  background: #484848;
+  color: #fff;
+}
+
+.nx-footer .nx-copyright .nx-right {
+  text-align: right;
+}
+
+.nx-footer .nx-copyright .nx-right a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.nx-footer .nx-copyright .nx-right ul {
+  margin-bottom: 0;
+}
+
 /* 
 
 Author: Alex Spataru - http://alexspataru.site
@@ -11275,7 +11319,7 @@ h6, .h6 {
 /* Go to top */
 #back-to-top {
   position: fixed;
-  bottom: 100px;
+  bottom: 50px;
   right: 40px;
   z-index: 9999;
   width: 32px;
@@ -11316,6 +11360,38 @@ body {
   overflow-x: hidden;
   color: #000;
   font-family: "Open Sans", sans-serif;
+}
+
+.post-password-form {
+  width: 100%;
+  max-width: 600px;
+  padding: 20px 15px;
+  margin: 30px auto;
+}
+
+.post-password-form label {
+  width: 100%;
+  display: block;
+}
+
+.post-password-form input[type="password"] {
+  width: 100%;
+  color: #f8f8f8;
+}
+
+.post-password-form input[type="submit"] {
+  background: #777;
+  color: #fff;
+  border: none;
+  outline: none;
+}
+
+.nx-archive-post {
+  margin-bottom: 20px;
+}
+
+.nx-archive-post a {
+  text-decoration: none;
 }
 
 .nx-accordion .panel {
@@ -11572,6 +11648,26 @@ body {
   .gallery-columns-3 .gallery-item, .gallery-columns-4 .gallery-item, .gallery-columns-5 .gallery-item,
   .gallery-columns-6 .gallery-item {
     max-width: 48%;
+  }
+}
+
+@media (max-width: 767px) {
+  .nx-footer .nx-copyright .nx-left {
+    text-align: center;
+  }
+  .nx-footer .nx-copyright .nx-right {
+    text-align: center;
+  }
+  .nx-footer .nx-copyright .nx-right a {
+    padding: 5px 0;
+  }
+  .nx-footer .nx-copyright .list-inline {
+    margin-left: 0;
+  }
+  .nx-footer .nx-copyright .list-inline > li {
+    display: block;
+    padding: 0;
+    margin: 5px 0;
   }
 }
 

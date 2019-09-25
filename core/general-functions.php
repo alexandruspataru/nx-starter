@@ -64,15 +64,63 @@ add_filter( 'body_class', 'nx_body_classes' );
 
 // Register the sidebars
 function nx_widgets_init() {
+	
+	// Main sidebar
 	register_sidebar( array(
 		'name'          => 'Main Sidebar',
 		'id'            => 'sidebar',
 		'description'   => '',
 		'before_widget' => '<section id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</section>',
-		'before_title'  => '<h2 class="widget-title">',
-		'after_title'   => '</h2>',
+		'before_title'  => '<h3 class="widget-title">',
+		'after_title'   => '</h3>',
 	) );
+	
+	// Footer - Column #1
+	register_sidebar( array(
+		'name'          => 'Footer - Column 1',
+		'id'            => 'footer_1',
+		'description'   => '',
+		'before_widget' => '<div id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</div>',
+		'before_title'  => '<h3 class="widget-title">',
+		'after_title'   => '</h3>',
+	) );
+	
+	// Footer - Column #2
+	register_sidebar( array(
+		'name'          => 'Footer - Column 2',
+		'id'            => 'footer_2',
+		'description'   => '',
+		'before_widget' => '<div id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</div>',
+		'before_title'  => '<h3 class="widget-title">',
+		'after_title'   => '</h3>',
+	) );
+	
+	// Footer - Column #3
+	register_sidebar( array(
+		'name'          => 'Footer - Column 3',
+		'id'            => 'footer_3',
+		'description'   => '',
+		'before_widget' => '<div id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</div>',
+		'before_title'  => '<h3 class="widget-title">',
+		'after_title'   => '</h3>',
+	) );
+	
+	// Footer - Column #4
+	register_sidebar( array(
+		'name'          => 'Footer - Column 4',
+		'id'            => 'footer_4',
+		'description'   => '',
+		'before_widget' => '<div id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</div>',
+		'before_title'  => '<h3 class="widget-title">',
+		'after_title'   => '</h3>',
+	) );
+	
+	
 }
 add_action( 'widgets_init', 'nx_widgets_init' );
 

@@ -14,6 +14,7 @@ function nx_theme_setup() {
 	// Register the menus
 	register_nav_menus( array(
 		'primary' => 'Main menu',
+		'footer' => 'Footer menu',
 	) );
 	
 	// Get the theme support

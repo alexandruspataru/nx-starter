@@ -1,7 +1,7 @@
 /* Go to top */
 #back-to-top {
     position: fixed;
-    bottom: 100px; // Cookie consent problem if lower than 100px
+    bottom: 50px; // Cookie consent problem if lower than 100px
     right: 40px;
     z-index: 9999;
     width: 32px;
@@ -42,4 +42,30 @@ body{
 	overflow-x:hidden;
 	color:$dark-color;
 	font-family: $primary-font;
+}
+
+// Password protected pages
+.post-password-form{
+	width:100%;
+	max-width:600px;
+	padding:20px 15px;
+	margin:30px auto;
+	
+	label{
+		width:100%;
+		display:block;
+	}
+	
+	input[type="password"]{
+		width:100%;
+		color:$secondary-bg-color;
+	}
+	
+	input[type="submit"]{
+		background: $dark-bg-color;
+		color: $light-color;
+		border:none;
+		outline:none;
+	}
+	
 }

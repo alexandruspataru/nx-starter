@@ -10,10 +10,11 @@ get_header();
 		<div class="row">
 
 			<?php if ( have_posts() ) : ?>
-
-				<?php printf( esc_html__( 'Search Results for: %s', 'nexus' ), '<span>' . get_search_query() . '</span>' ); ?>
+				
+				<div class="nx-archive-title nx-search-title col-xs-12">
+					<h1><?php printf( esc_html__( 'Search Results for: %s', 'nexus' ), '<span>' . get_search_query() . '</span>' ); ?></h1>
+				</div>
 			
-
 				<?php /* Start the Loop */
 				
 					while ( have_posts() ) : the_post();
@@ -33,8 +34,6 @@ get_header();
 			?>
 			
 		</div>
-		
-		<?php get_sidebar(); ?>
 		
 	</div>
 </div>

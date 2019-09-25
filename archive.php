@@ -10,11 +10,10 @@ get_header();
 		<div class="row">
 			<?php if ( have_posts() ) : ?>
 
-				<?php /* Archive title & Description */
+				<div class="nx-archive-title col-xs-12"><?php /* Archive title & Description */
 					the_archive_title( '<h1 class="page-title">', '</h1>' );
 					the_archive_description( '<div class="taxonomy-description">', '</div>' );
-				?>
-
+				?></div>
 
 				<?php /* Start the Loop */
 					while ( have_posts() ) : the_post();
