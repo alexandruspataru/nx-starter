@@ -5,7 +5,7 @@ get_header();
 
 ?>
 
-<div class="archivePage searchPage">
+<div class="nx-archive nx-search-page">
 	<div class="container">
 		<div class="row">
 
@@ -23,7 +23,10 @@ get_header();
 
 					endwhile;
 
+					/* Pagination */
+					echo '<div class="col-xs-12">';
 					nx_pagination();
+					echo '</div>';
 
 			else :
 

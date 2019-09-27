@@ -1,6 +1,9 @@
 // Variables and Mixins
-@import 'layout/variables';
-@import 'layout/mixins';
+@import 'config/variables';
+@import 'config/mixins';
+@import 'config/general';
+@import 'config/typography';
+@import 'config/wordpress';
 
 // Vendor
 @import 'plugins/bootstrap';
@@ -8,28 +11,29 @@
 @import 'plugins/jquery.fancybox';
 @import 'plugins/owl-carousel';
 
-// Project files
-@import 'layout/header';
-@import 'layout/footer';
-@import 'layout/wordpress';
-@import 'layout/typography';
-@import 'layout/general';
-
-// Partials
-@import 'parts/content-archive';
-
 // Widgets
 @import 'widgets/accordion';
 @import 'widgets/lightbox-img';
 @import 'widgets/slider';
 @import 'widgets/modal';
 
+// Template parts
+@import 'template-parts/header';
+@import 'template-parts/sidebar';
+@import 'template-parts/footer';
+@import 'template-parts/content-archive';
+
 // Pages
 @import 'pages/home';
 @import 'pages/404';
+@import 'pages/archives';
+@import 'pages/single-post';
+@import 'pages/single-page';
 
 // Responsive
-@import 'layout/responsive'; 
+@import 'responsive/desktop'; 
+@import 'responsive/tablet'; 
+@import 'responsive/mobile'; 
 
 // Custom styling
 @import 'custom';

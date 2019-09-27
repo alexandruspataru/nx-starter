@@ -1,0 +1,18 @@
+// Big screens
+@media (min-width: 1200px) {
+
+}
+
+// Small desktops
+@media (max-width: 1199px) {
+	
+	.gallery-columns-4 .gallery-item, .gallery-columns-5 .gallery-item,
+	.gallery-columns-6 .gallery-item {max-width: 31.33%;}
+
+}
+
+// Mid-range tablets
+@media (min-width: 992px) and (max-width: 1199px) {
+
+
+}

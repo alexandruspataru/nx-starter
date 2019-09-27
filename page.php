@@ -5,7 +5,7 @@ get_header();
 
 ?>
 
-<div class="singlePage">
+<div class="nx-singular nx-single-page">
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-12">

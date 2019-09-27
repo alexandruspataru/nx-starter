@@ -1,5 +1,17 @@
+#### 0.7
+* __Added__ SCSS - H1 subtitle
+* __Changed__ Embed Shortcode - added responsive embed for YouTube / Vimeo videos
+* __Changed__ Single Post - sidebar CSS / HTML formatting
+* __Changed__ Widget - Lightbox image - Added Facebook videos support
+* __Changed__ SCSS - completely new structure
+* __Changed__ page-playground.php - added bootstrap wrapper
+* __Changed__ page-playground.php - removed the sidebar
+* __Changed__ page-playground.php - moved the debug under page title
+* __Bugfix__ archive.php - the pagination wasn't included into grid
+* __Bugfix__ search.php - the pagination wasn't included into grid
+
 #### 0.6
-* __Added__ CSS - Password protected pages (form fixes)
+* __Added__ SCSS - Password protected pages (form fixes)
 * __Added__ SCSS - /parts/ folder - keeping all the partials here
 * __Added__ Image - placeholder-thumb.png
 * __Added__ Footer - Copyright section

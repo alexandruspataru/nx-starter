@@ -442,3 +442,49 @@ function nx_page_title(){
 
 }
 
+// Get the embed link for Facebook links
+function nx_get_fb_video_link($link = ''){
+	
+	// Get the iframe source, in case it exists
+	if(false !== strpos($link, '<iframe')){
+		
+		preg_match('/src="([^"]+)"/', $link, $match);
+		$link			= (isset($match[1])) ? $match[1] : '';
+		
+	}
+	
+	// Store the final link
+	$finalLink			 = '';
+		
+	// Store the video ID
+	$videoID			 = '';
+	
+	// Decode the URL (in case we have an iframe, the final link will be URL-encoded)
+	$link				 = urldecode($link);
+	
+	// Split the link by /
+	$linkParts			 = explode('/', $link);
+	
+	// Get the ID
+	foreach($linkParts as $linkPart){
+
+		if(is_numeric($linkPart)){
+			
+			$videoID	 = $linkPart;
+			
+			break;
+		}
+		
+	}
+	
+	// We have a valid link
+	if(is_numeric($videoID)){
+		
+		$finalLink		 = 'https://www.facebook.com/v2.5/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Fvideo.php%3Fv%3D' . $videoID;
+		
+	}
+
+	return $finalLink;
+	
+}
+

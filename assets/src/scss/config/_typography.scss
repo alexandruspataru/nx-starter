@@ -1,6 +1,14 @@
 h1, .h1{
 	font-family:$secondary-font;
 	color:$primary-color;
+	
+	.nx-subtitle{
+		font-size:20px;
+		font-weight:300;
+		display:block;
+		margin-top:10px;
+	}
+	
 }
 
 h2, .h2{

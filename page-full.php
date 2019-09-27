@@ -5,7 +5,7 @@ get_header();
 
 ?>
 
-<div class="singlePage nx-full-width">
+<div class="nx-singular nx-single-page nx-full-width">
 	<div class="container-fluid">
 		<div class="row">
 			<?php /* The Loop */

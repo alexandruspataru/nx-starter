@@ -29,4 +29,5 @@ require_once (NX_CORE . 'actions.php');														// Actions & Filters
 require_once (NX_CORE . 'admin/main.php');													// Admin settings
 require_once (NX_CORE . 'general-functions.php');											// General functions
 require_once (NX_CORE . 'shortcode-gallery.php');											// Gallery shortcode
+require_once (NX_CORE . 'shortcode-embed.php');												// Embed shortcode
 require_once (NX_ROOT . 'widgets/main.php');												// SiteOrigin Page Builder - Custom widgets

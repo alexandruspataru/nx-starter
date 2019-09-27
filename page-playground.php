@@ -13,29 +13,32 @@ if(!is_super_admin()){
 
 get_header();
 
-// Start debugging
-$info					 = 'some info';
-$info					 = nx_get_site_config();
-
-nx_dump($info, true);
-
 ?>
 
-<div class="singlePost nx-playground">
+<div class="nx-singular nx-playground-page">
 	<div class="container">
 		<div class="row">
-			
-			<?php
-				while ( have_posts() ) : the_post();
-				
-					echo nx_page_title();
+			<div class="col-xs-12">
+				<?php
+					while ( have_posts() ) : the_post();
+						
+						// Page title & subtitle
+						echo nx_page_title();
+						
+						// Start debugging
+						$info					 = 'some info';
+						$info					 = nx_get_site_config();
 
-					the_content();
+						nx_dump($info, true);
+						
+						// Display the page content
+						the_content();
 
-				endwhile; // End of the loop.
-				
-				get_sidebar();
-			?>		
+					endwhile; // End of the loop.
+					
+
+				?>		
+			</div>
 			
 		</div>
 	</div>

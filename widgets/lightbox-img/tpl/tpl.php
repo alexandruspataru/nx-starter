@@ -41,12 +41,19 @@ if( (is_numeric($instance['image']) && $instance['image'] > 0) || !empty($instan
 		
 		$videoCSS		 = ' nx-width-video';
 		$videoHTML		 = '<i class="fa fa-play-circle-o" aria-hidden="true"></i>';
+		
+		// Facebook links
+		if(false !== strpos($imgDest, 'facebook.com')){
+			
+			$imgDest	 = nx_get_fb_video_link($imgDest);
+			
+		}
 
 	}
 	
 	// Build the HTML
 	$html				 = '<div class="nx-lightbox-img' . $videoCSS . '">';
-	$html				.= '<a class="nx-fancybox" href="' . $imgDest . '">';
+	$html				.= '<a class="nx-fancybox" href="' . $imgDest . '"' . ((false !== strpos($imgDest, 'facebook.com')) ? ' data-type="iframe"' : ''  ) . '>';
 	$html				.= '<img src="' . $imgFile . '" alt="Lightbox image" class="img-responsive">';	
 	$html				.= $videoHTML;
 	$html				.= '</a></div>';
