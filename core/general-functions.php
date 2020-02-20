@@ -1,32 +1,5 @@
 <?php if ( ! defined( 'ABSPATH' ) ) exit; 
 
-/**
- * Here we'll setup all the required functions.
- *
- * In case that any plugin will fall to be activated or any function is deprecated, the site will continue to work
- * with the except of the selected functions. 
- *
- * Also by firing the function on the "wp" action, we make sure that the plugin can be activated / deactivated safely. 
- *
- */
-function nx_mandatory_functions() {
-
-    $mandatoryFunctions = array('get_field', 'have_rows', 'get_sub_field',);
-
-	foreach($mandatoryFunctions as $function){
-		
-		if(!function_exists($function)){
-			
-			$create_function	= $function;
-			$create_function	= 'function ' . $create_function . "() { return; }";
-			eval($create_function);
-
-		}
-		
-	}
-}
-add_action('wp', 'nx_mandatory_functions');
-
 // Creating a better var_dump
 function nx_dump($toDebug = '', $container = false){
 
@@ -40,89 +13,57 @@ function nx_dump($toDebug = '', $container = false){
 	
 }
 
-// Add mobile CSS class to body
-function nx_body_classes( $classes ) {
+// Get the page info
+function nx_get_page_custom_fields($id = ''){
 	
-	if(wp_is_mobile()){
+	// The function is intended only for singular types
+	if(!is_singular())
+		return false;
+	
+	// Get the post ID
+	$postID									 = (!empty($id) && is_numeric($id)) ? $id : get_the_ID();
+	
+	// Create the cached name
+	$postCacheName							 = 'nx_page_' . $postID . '_custom_fields';
+	
+	// Try to get the cached result
+	$pageInfo								 = wp_cache_get($postCacheName);
+	
+	if ($pageInfo === false) {
+	
+		// Store the default data
+		$pageInfo						 	 = array(
+			'nx_hero_image'					 => '',
+			'nx_enable_page_title'			 => '',
+			'nx_custom_title'				 => '',
+			'nx_page_subtitle'				 => '',
+			'nx_page_css'					 => '',
+			'nx_page_js'					 => '',
+			'nx_body_class'					 => '',
+		);
 		
-		$classes[]		 = 'nx-mobile';
+		// Store the custom fields
+		$customFields						 = get_post_meta($postID);
 		
-	}
-	
-	// Add the custom body class
-	$pageInfo			 = nx_get_page_custom_fields();
-	
-	if(is_array($pageInfo) && isset($pageInfo['nx_page_custom_body_class']) && !empty($pageInfo['nx_page_custom_body_class'])){
+		// Asign the custom fields
+		if(!empty($customFields) && is_array($customFields)){
 		
-		$classes[]		 = $pageInfo['nx_page_custom_body_class'];
-	}
-	
-	return $classes;
-	
-}
-add_filter( 'body_class', 'nx_body_classes' );
+			foreach($pageInfo as $key => $value){
 
-// Register the sidebars
-function nx_widgets_init() {
-	
-	// Main sidebar
-	register_sidebar( array(
-		'name'          => 'Main Sidebar',
-		'id'            => 'sidebar',
-		'description'   => '',
-		'before_widget' => '<section id="%1$s" class="widget %2$s">',
-		'after_widget'  => '</section>',
-		'before_title'  => '<h3 class="widget-title">',
-		'after_title'   => '</h3>',
-	) );
-	
-	// Footer - Column #1
-	register_sidebar( array(
-		'name'          => 'Footer - Column 1',
-		'id'            => 'footer_1',
-		'description'   => '',
-		'before_widget' => '<div id="%1$s" class="widget %2$s">',
-		'after_widget'  => '</div>',
-		'before_title'  => '<h3 class="widget-title">',
-		'after_title'   => '</h3>',
-	) );
-	
-	// Footer - Column #2
-	register_sidebar( array(
-		'name'          => 'Footer - Column 2',
-		'id'            => 'footer_2',
-		'description'   => '',
-		'before_widget' => '<div id="%1$s" class="widget %2$s">',
-		'after_widget'  => '</div>',
-		'before_title'  => '<h3 class="widget-title">',
-		'after_title'   => '</h3>',
-	) );
-	
-	// Footer - Column #3
-	register_sidebar( array(
-		'name'          => 'Footer - Column 3',
-		'id'            => 'footer_3',
-		'description'   => '',
-		'before_widget' => '<div id="%1$s" class="widget %2$s">',
-		'after_widget'  => '</div>',
-		'before_title'  => '<h3 class="widget-title">',
-		'after_title'   => '</h3>',
-	) );
-	
-	// Footer - Column #4
-	register_sidebar( array(
-		'name'          => 'Footer - Column 4',
-		'id'            => 'footer_4',
-		'description'   => '',
-		'before_widget' => '<div id="%1$s" class="widget %2$s">',
-		'after_widget'  => '</div>',
-		'before_title'  => '<h3 class="widget-title">',
-		'after_title'   => '</h3>',
-	) );
-	
+				$pageInfo[$key]				 = (isset($customFields[$key][0])) ? $customFields[$key][0] : $pageInfo[$key];
+				
+			}
+		
+		}
+		
+		// Add the page info to caching
+		wp_cache_set($postCacheName, $pageInfo);
+		
+	}
+
+	return $pageInfo;
 	
 }
-add_action( 'widgets_init', 'nx_widgets_init' );
 
 // Loops pagination
 function nx_pagination($query = '') {
@@ -192,133 +133,6 @@ function nx_pagination($query = '') {
 	}
 	
 }
-
-// Get the page info
-function nx_get_page_custom_fields($id = ''){
-	
-	// Try to get the cached result
-	$pageInfo								 = wp_cache_get( 'nx_page_custom_fields' );
-	
-	if ( false === $pageInfo ) {
-	
-		// Store the default data
-		$pageInfo						 	 = array(
-			'nx_page_custom_css'			 => '',
-			'nx_page_custom_js'				 => '',
-			'nx_page_custom_body_class'		 => '',
-		);
-		
-		// Store the custom fields
-		$customFields						 = array();
-		
-		// Singular
-		if(is_singular()){
-			
-			$postID							 = (!empty($id) && is_numeric($id)) ? $id : get_the_ID();
-			$customFields					 = get_post_meta($postID);
-
-		}
-		
-		// Category
-		elseif(is_category()){
-			
-			$termInfo						 = get_queried_object();
-			$customFields					 = get_term_meta($termInfo->term_id);
-		
-		}
-
-		// Asign the custom fields
-		if(!empty($customFields) && is_array($customFields)){
-		
-			foreach($pageInfo as $key => $value){
-					
-				$pageInfo[$key]				 = (isset($customFields[$key][0])) ? $customFields[$key][0] : $pageInfo[$key];
-				
-			}
-		
-		}
-		
-		// Add the page info to caching
-		wp_cache_set( 'nx_page_custom_fields', $pageInfo );
-		
-	}
-
-	return $pageInfo;
-	
-}
-
-// Insert the page custom meta + styles
-function nx_inject_wp_head(){
-	
-	// Get the site Javascript
-	$siteCustomCSS			 = nx_get_site_config('custom_css');
-	if(!empty($siteCustomCSS)){
-		
-		echo "\n\n\t<!-- Site Custom CSS start -->\n\t";
-		echo $siteCustomCSS;
-		echo "\n\t<!-- Site Custom CSS -->\n\n";
-		
-	}
-	
-	// Get the current fields
-	$pageInfo				 = nx_get_page_custom_fields();
-	
-	// Something is wrong
-	if(!is_array($pageInfo)) return;
-	
-	// Store the markup
-	$html					 = "\n\n\t<!-- Page Settings start -->";
-	
-	// Custom CSS
-	if(isset($pageInfo['nx_page_custom_css']) && !empty($pageInfo['nx_page_custom_css'])){
-		
-		$html				.= "\n\t" . $pageInfo['nx_page_custom_css'];
-		
-	}
-	
-	$html					.= "\n\t<!-- Page Settings end -->\n\n";
-	
-	// Output everything
-	echo $html;
-	
-}
-add_action('wp_head', 'nx_inject_wp_head');
-
-// Insert page scripts - after page scripts are already loaded (n.r. jQuery & vendor.js).
-function nx_inject_wp_footer(){
-	
-	// Get the site Javascript
-	$siteCustomJS			 = nx_get_site_config('custom_js');
-	if(!empty($siteCustomJS)){
-		
-		echo "\n\n\t<!-- Site Custom Javascript start -->\n\t";
-		echo $siteCustomJS;
-		echo "\n\t<!-- Site Custom Javascript -->\n\n";
-		
-	}
-	
-	// Get the current fields
-	$pageInfo				 = nx_get_page_custom_fields();
-	
-	// Something is wrong
-	if(!is_array($pageInfo)) return;
-	
-	// Custom Javascript
-	if(isset($pageInfo['nx_page_custom_js']) && !empty($pageInfo['nx_page_custom_js'])){
-		
-		// Store the markup
-		
-		$html				 = "\n\n\t<!-- Page Scripts start -->";
-		$html				.= "\n\t" . $pageInfo['nx_page_custom_js'];
-		$html				.= "\n\t<!-- Page Scripts end -->\n\n";
-		
-		// Output everything
-		echo $html;
-		
-	}
-	
-}
-add_action('wp_footer', 'nx_inject_wp_footer', 90);
 
 // Store the website settings
 function nx_get_site_config($field = ''){
@@ -402,43 +216,29 @@ function nx_page_title(){
 	if(!is_singular()) return '';
 		
 	// Get all the site meta into a variable so we'll not make a ton of queries using the get_field() function (from ACF plugin)
-	$meta				 = get_post_meta(get_the_ID());
+	$meta					 = nx_get_page_custom_fields();
 	
-	// Default title
-	$cssClass			 = 'nx-default-title';
+	// Something is wrong. Stop executing.
+	if(empty($meta) || !is_array($meta))
+		return '<h1 class="nx-page-title">' . get_the_title() . '</h1>';
 	
-	// Should we display the page title? Default: Yes
-	$showTitle			 = (array_key_exists('nx_enable_page_title', $meta)) ? $meta['nx_enable_page_title'][0] : 1;
+	// The page title is disabled
+	if(isset($meta['nx_enable_page_title']) && $meta['nx_enable_page_title'] == 0)
+		return;
 	
 	// Get the subtitle
-	$subTitle			 = (array_key_exists('nx_page_subtitle', $meta)) ? $meta['nx_page_subtitle'][0] : '';
+	$subTitle				 = (isset($meta['nx_page_subtitle'])) ? $meta['nx_page_subtitle'] : '';
 	
+	// Get the title
+	$postTitle				 = (isset($meta['nx_custom_title']) && !empty($meta['nx_custom_title'])) ? $meta['nx_custom_title'] : get_the_title();
 	
+	// Create the HTML
+	$html					 = '<h1 class="nx-page-title">';
+	$html					.= $postTitle;
+	$html					.= (!empty($subTitle)) ? '<span class="nx-subtitle">' . $subTitle . '</span>' : '';
+	$html					.= '</h1>';
 	
-	// Get the custom title
-	$customTitle		 = '';
-	if(array_key_exists('nx_custom_title', $meta)){
-		
-		$customTitle	 = $meta['nx_custom_title'][0];
-		$cssClass		 = 'nx-custom-title';
-
-	}
-	
-	// Display the title only if we checked that we want to display it
-	if($showTitle == 1){
-		
-		// Get the final title
-		$postTitle		 = ($customTitle !== '' && !empty($customTitle)) ? $customTitle : get_the_title();
-		
-		// Get the subtitle
-		$postSubTitle	 = ($subTitle !== '' && !empty($subTitle)) ? '<span class="nx-subtitle">' . $subTitle . '</span>' : '';
-		
-		// Final title
-		$titleHTML		 = '<h1 class="page-title ' . $cssClass . '">' . $postTitle . ' ' . $postSubTitle . '</h1>';
-		
-		return $titleHTML;
-		
-	}
+	return $html;
 
 }
 

@@ -1,3 +1,12 @@
+#### 0.8
+* __Added__ Index file for each folders (preventing directory listing)
+* __Added__ TinyMCE table support
+* __Added__ SiteOrigin Page Builder - The newly created widgets are active by default (upon creation)
+* __Changed__ Custom Fields
+* __Changed__ Home - added custom title support
+* __Removed__ Front Page support - We can use widgets / custom fields to achieve that
+* __Removed__ core/admin folder - No longer needed
+
 #### 0.7
 * __Added__ SCSS - H1 subtitle
 * __Changed__ Embed Shortcode - added responsive embed for YouTube / Vimeo videos
