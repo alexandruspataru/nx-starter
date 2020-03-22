@@ -27,7 +27,7 @@ get_header();
 						
 						// Start debugging
 						$info					 = 'some info';
-						$info					 = nx_get_page_custom_fields();
+						$info					 = nx_get_page_custom_fields('all');
 
 						nx_dump($info, true);
 						

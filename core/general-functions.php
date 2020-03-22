@@ -14,7 +14,7 @@ function nx_dump($toDebug = '', $container = false){
 }
 
 // Get the page info
-function nx_get_page_custom_fields($id = ''){
+function nx_get_page_custom_fields($field = '', $id = ''){
 	
 	// The function is intended only for singular types
 	if(!is_singular())
@@ -30,16 +30,18 @@ function nx_get_page_custom_fields($id = ''){
 	$pageInfo								 = wp_cache_get($postCacheName);
 	
 	if ($pageInfo === false) {
+		
+		// Keep all the fields
+		$pageInfo							 = array();
 	
 		// Store the default data
-		$pageInfo						 	 = array(
-			'nx_hero_image'					 => '',
-			'nx_enable_page_title'			 => '',
-			'nx_custom_title'				 => '',
-			'nx_page_subtitle'				 => '',
-			'nx_page_css'					 => '',
-			'nx_page_js'					 => '',
-			'nx_body_class'					 => '',
+		$pageFields						 	 = array(
+			'nx_page_custom_css'			 => '',
+			'nx_page_custom_js'				 => '',
+			'nx_page_custom_body_class'		 => '',
+			'nx_page_disable_top_bar'		 => '',
+			'nx_page_disable_header'		 => '',
+			'nx_page_disable_footer'		 => '',
 		);
 		
 		// Store the custom fields
@@ -48,9 +50,12 @@ function nx_get_page_custom_fields($id = ''){
 		// Asign the custom fields
 		if(!empty($customFields) && is_array($customFields)){
 		
-			foreach($pageInfo as $key => $value){
+			foreach($pageFields as $key => $value){
+				
+				// Store the new key
+				$new_key					 = str_replace('nx_page_', '', $key);
 
-				$pageInfo[$key]				 = (isset($customFields[$key][0])) ? $customFields[$key][0] : $pageInfo[$key];
+				$pageInfo[$new_key]			 = (isset($customFields[$key][0])) ? $customFields[$key][0] : '';
 				
 			}
 		
@@ -61,7 +66,28 @@ function nx_get_page_custom_fields($id = ''){
 		
 	}
 
-	return $pageInfo;
+	// Return a specific setting / field or the entire array
+	if(!empty($field)){
+		
+		// Get all the fields
+		if($field == 'all'){
+			
+			return $pageInfo;
+			
+		}
+		
+		// Get a specific field
+		elseif(isset($pageInfo[$field])){
+			
+			return $pageInfo[$field];
+			
+		}
+
+	}
+
+	// Return null
+	return null;
+	
 	
 }
 

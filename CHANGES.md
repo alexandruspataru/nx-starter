@@ -1,3 +1,7 @@
+#### 0.9
+* __Added__ Better Page Settings integration
+* __Changed__ Custom Fields
+
 #### 0.8
 * __Added__ Index file for each folders (preventing directory listing)
 * __Added__ TinyMCE table support

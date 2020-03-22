@@ -274,11 +274,11 @@ add_filter( 'body_class', function($classes) {
 	}
 	
 	// Add the custom body class
-	$pageInfo			 = nx_get_page_custom_fields();
+	$pageInfo			 = nx_get_page_custom_fields('custom_body_class');
 	
-	if(is_array($pageInfo) && isset($pageInfo['nx_body_class']) && !empty($pageInfo['nx_body_class'])){
+	if(!empty($pageInfo)){
 		
-		$classes[]		 = $pageInfo['nx_body_class'];
+		$classes[]		 = $pageInfo;
 		
 	}
 	
@@ -360,26 +360,18 @@ add_action('wp_head', function(){
 		
 	}
 	
-	// Get the current fields
-	$pageInfo				 = nx_get_page_custom_fields();
+	// Get the page custom fields
+	$pageInfo				 = nx_get_page_custom_fields('custom_css');
 	
-	// Something is wrong
-	if(!is_array($pageInfo)) return;
-	
-	// Store the markup
-	$html					 = "\n\n\t<!-- Page Settings start -->";
-	
-	// Custom CSS
-	if(isset($pageInfo['nx_page_custom_css']) && !empty($pageInfo['nx_page_custom_css'])){
+	// We've got some custom CSS
+	if(!empty($pageInfo)){
 		
-		$html				.= "\n\t" . $pageInfo['nx_page_custom_css'];
-		
+		// Store the markup
+		echo "\n\n\t<!-- Page Settings start -->";
+		echo "\n\t" . $pageInfo;
+		echo "\n\t<!-- Page Settings end -->\n\n";
+
 	}
-	
-	$html					.= "\n\t<!-- Page Settings end -->\n\n";
-	
-	// Output everything
-	echo $html;
 	
 });
 
@@ -397,29 +389,21 @@ add_action('wp_footer', function(){
 	}
 	
 	// Get the current fields
-	$pageInfo				 = nx_get_page_custom_fields();
+	$pageInfo				 = nx_get_page_custom_fields('custom_js');
 	
-	// Something is wrong
-	if(!is_array($pageInfo)) return;
-	
-	// Custom Javascript
-	if(isset($pageInfo['nx_page_custom_js']) && !empty($pageInfo['nx_page_custom_js'])){
+	// We've got some custom Javascript
+	if(!empty($pageInfo)){
 		
-		// Store the markup
-		
-		$html				 = "\n\n\t<!-- Page Scripts start -->";
-		$html				.= "\n\t" . $pageInfo['nx_page_custom_js'];
-		$html				.= "\n\t<!-- Page Scripts end -->\n\n";
-		
-		// Output everything
-		echo $html;
+		echo "\n\n\t<!-- Page Scripts start -->";
+		echo "\n\t" . $pageInfo;
+		echo "\n\t<!-- Page Scripts end -->\n\n";
 		
 	}
 	
 }, 90);
 
 // The following function will add the Bootstrap responsive embed support
-add_filter( 'embed_oembed_html', function($html, $url, $attr, $post_ID) {
+add_filter('embed_oembed_html', function($html, $url, $attr, $post_ID) {
 	
 	// YouTube / Vimeo
 	if ( false !== strpos( $url, 'youtube.com' ) || false !== strpos( $url, 'vimeo.com' ) ) {
