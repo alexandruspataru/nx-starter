@@ -222,7 +222,7 @@ function nx_get_site_config($field = ''){
 	if(!empty($field)){
 		
 		// Return nothing if the key doesn exist
-		return (array_key_exists($field, $settings)) ? $settings[$field] : '';
+		return (is_array($settings) && array_key_exists($field, $settings)) ? $settings[$field] : '';
 	
 	}
 	
